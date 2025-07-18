@@ -35,3 +35,21 @@ This project highlights strong command over Qt’s signals/slots, layout managem
 - Qt Creator (for building & UI management)
 
 ---
+
+## 💡 Why This Project?
+
+BookMySeatGUI brings a classic console project idea into the modern GUI world — teaching event-driven design, interactive components, and layout handling in a visual C++ application. 
+
+It’s ideal for beginners learning Qt or developers showcasing GUI development skills.
+
+---
+
+## 📸 Demo Snapshot:
+
+<img width="1365" height="717" alt="image" src="https://github.com/user-attachments/assets/78d643be-4e0e-4e3f-aa7e-42e7a5ff6d7d" />
+
+<img width="1365" height="718" alt="image" src="https://github.com/user-attachments/assets/4b2bf4e6-8906-484d-9804-15c136c29e98" />
+
+<img width="360" height="101" alt="image" src="https://github.com/user-attachments/assets/c64a6087-ce0b-4049-a6ae-29d17c6b9241" />
+
+
