@@ -11,30 +11,38 @@ const int columns = 10;
 
 BookingWindow::BookingWindow(QWidget *parent): QWidget(parent) //constructor
 {
+    //Heading Labels:
     title = new QLabel("Please select the seats, you want", this);
     QFont font("Arial Black", 14, QFont :: Bold);
     title -> setFont(font);
     title -> setAlignment(Qt :: AlignCenter);
+
     green = new QLabel("GREEN: Available", this);
     QFont greenfont("Arial Black", 10, QFont :: Bold);
     green -> setFont(greenfont);
     green -> setAlignment(Qt :: AlignCenter);
+
     red = new QLabel("RED: Taken", this);
     QFont redfont("Arial Black", 10, QFont :: Bold);
     red -> setFont(redfont);
     red -> setAlignment(Qt :: AlignCenter);
+
+    //Info Labels:
     totalSeats = new QLabel(QString("Total Seats Available:%1 ").arg(totalseats));
     QFont font2("Arial Black", 10, QFont :: Bold);
     totalSeats -> setFont(font2);
     totalSeats -> setAlignment(Qt :: AlignCenter);
+
     seatsTaken = new QLabel(QString("Seats Taken:%1").arg(seatstaken));
     QFont font3("Arial Black", 10, QFont :: Bold);
     seatsTaken -> setFont(font3);
     seatsTaken -> setAlignment(Qt :: AlignCenter);
+
     priceperseat = new QLabel(QString("Price Per Seat: $%1 ").arg(seatperprice));
     QFont font4("Airal Black", 10, QFont :: Bold);
     priceperseat -> setFont(font4);
     priceperseat -> setAlignment(Qt :: AlignCenter);
+
     totalprice = new QLabel(QString("Total Price: $%1").arg(price));
     QFont font5("Arial Black", 10, QFont :: Bold);
     totalprice -> setFont(font5);
@@ -56,6 +64,8 @@ BookingWindow::BookingWindow(QWidget *parent): QWidget(parent) //constructor
 
     QPushButton *confirmButton = new QPushButton("Confirm Button", this);
     QPushButton *endButton = new QPushButton("Exit", this);
+
+    //Generating Seat Buttons in Grid Layout:
     for(int i = 0; i < row; i++)
     {
         for(int j = 0; j < columns; j++)
@@ -67,6 +77,8 @@ BookingWindow::BookingWindow(QWidget *parent): QWidget(parent) //constructor
                                     "}");
             seatButton-> setFixedSize(60, 60);
             gridLayout->addWidget(seatButton, i, j);
+
+            //Seat Connection Logic:
             connect(seatButton, &QPushButton :: clicked, this, [=]() mutable //mutable allows to modify values.
             {
                 if(seatButton -> isChecked())
@@ -81,14 +93,18 @@ BookingWindow::BookingWindow(QWidget *parent): QWidget(parent) //constructor
                     seatstaken--;
                     price-=seatperprice;
                 }
+                //Updating seat info labels after each click:
                 totalSeats -> setText(QString("Total Seats Available:%1").arg(totalseats - seatstaken));
                 seatsTaken -> setText(QString("Seats Taken:%1").arg(seatstaken));
                 totalprice -> setText(QString("Total Price: $%1").arg(price));
             });
         }
     }
+
+    //Confirm and Exit Button Styling:
     confirmButton -> setFixedSize(200, 50);
     endButton -> setFixedSize(200, 50);
+
     confirmButton -> setStyleSheet("QPushButton {"
                                  "background-color: rgb(76,175,80);"
                                  "color: white;"
@@ -109,6 +125,8 @@ BookingWindow::BookingWindow(QWidget *parent): QWidget(parent) //constructor
                              "}");
 
     connect(endButton, &QPushButton :: clicked, this, &QWidget :: close);
+
+    //Confirm Button Logic When Ok is clicked:
     connect(confirmButton, &QPushButton :: clicked, this, [=](){
         QMessageBox messageBox;
         messageBox.setWindowTitle("Confirmation");
@@ -121,6 +139,8 @@ BookingWindow::BookingWindow(QWidget *parent): QWidget(parent) //constructor
             this -> close();
         }
     });
+
+    //Main Layout Compilation:
     QVBoxLayout *mainlayout = new QVBoxLayout(this);
 
 
